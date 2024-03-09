@@ -20,14 +20,12 @@ services:
     networks:
       - yii
     depends_on:
-      - postgre_sql
-  postgre_sql:
-    container_name: yii_postgre_sql
+      - postgres_sql
+  postgres_sql:
+    container_name: yii_postgres_sql
     image: postgres:latest
-    volumes:
-      - ./www:/var/www
-      - ./db.cnf:/etc/Postgres/conf.d/db.cnf
-      - db:/var/lib/Postgres
+    ports:
+      - 5432:5432
     environment:
       - POSTGRES_USER=yii
       - POSTGRES_PASSWORD=yii
