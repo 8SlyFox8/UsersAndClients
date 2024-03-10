@@ -23,7 +23,7 @@ class m240309_151320_users extends Migration
                 'sex' => $this->boolean(),
                 'created_at' => $this->timestamp(0)->defaultValue("now()")->notNull(),
                 'deleted' => $this->boolean()->defaultValue(true)->notNull(),
-                'auth_key' => $this->string(32),
+                'auth_key' => $this->string(32)
             ]
         );
     }
