@@ -13,7 +13,7 @@ class UsersListForGroups extends ActiveRecord
 
     public function getUsers()
     {
-        return $this->hasOne(Users::class, ['id' => 'user_id']);
+        return $this->hasOne(Users::class, ['id' => 'users_id']);
     }
 
     public function getUsersGroups()

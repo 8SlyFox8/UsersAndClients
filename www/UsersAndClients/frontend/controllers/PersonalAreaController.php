@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use frontend\models\Clients;
 use frontend\models\Users;
 use frontend\models\UsersGroups;
+use frontend\models\UsersListForClients;
 use frontend\models\UsersListForGroups;
 use Yii;
 use yii\web\Controller;
@@ -84,6 +85,24 @@ class PersonalAreaController extends Controller
         $usersListForGroup->users_id = $currentId;
         $usersListForGroup->usersGroups_id = $usersListForGroupRequest['UsersGroups']['id'];
         $usersListForGroup->save();
+
+        return $this->render(
+            'personalArea',
+            compact('currentId')
+        );
+    }
+
+    public function actionJoinClient()
+    {
+        $usersListForClientRequest = Yii::$app->request->post();
+        $currentId = Yii::$app->request->get()['currentId'];
+
+        $usersListForClient = new UsersListForClients();
+        $usersListForClient->users_id = $currentId;
+        $usersListForClient
+            ->usersListForGroups_id = $usersListForClientRequest['UsersListForClients']['usersListForGroups_id'];
+        $usersListForClient->clients_id = $usersListForClientRequest['UsersListForClients']['clients_id'];
+        $usersListForClient->save();
 
         return $this->render(
             'personalArea',
